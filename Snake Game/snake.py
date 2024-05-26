@@ -46,7 +46,7 @@ class Snake:
             self.head.setheading(RIGHT)
 
     def does_hit_walls(self):
-        if self.head.xcor() > 280 or self.head.xcor() < -280 or self.head.ycor() > 280 or self.head.ycor() < -280:
+        if self.head.xcor() > 290 or self.head.xcor() < -290 or self.head.ycor() > 290 or self.head.ycor() < -290:
             return True
         else:
             return False
