@@ -46,10 +46,10 @@ class Scoreboard:
 
         # Display the scores
         self.score_board.goto(-100, 260)
-        self.score_board.write(f"{self.score_left}", align="center", font=("Arial", 24, "normal"))
+        self.score_board.write(f"{self.score_left}", align="center", font=("Arial", 25, "normal"))
 
         self.score_board.goto(100, 260)
-        self.score_board.write(f"{self.score_right}", align="center", font=("Arial", 24, "normal"))
+        self.score_board.write(f"{self.score_right}", align="center", font=("Arial", 25, "normal"))
 
     def increase_left_score(self):
         self.score_left += 1
