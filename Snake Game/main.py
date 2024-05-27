@@ -10,6 +10,15 @@ screen.bgcolor("black")
 screen.title("My Snake Game")
 screen.tracer(0)
 
+
+def end_game():
+    snake.erase_snake()
+    scoreboard.game_over()
+    screen.update()
+    global game_is_on
+    game_is_on = False
+
+
 snake = Snake()
 food = Food()
 scoreboard = Scoreboard()
@@ -20,6 +29,9 @@ screen.onkey(snake.down, "Down")
 screen.onkey(snake.left, "Left")
 screen.onkey(snake.right, "Right")
 
+# if we want to end the game
+screen.onkey(end_game, "Escape")
+
 game_is_on = True
 while game_is_on:
     scoreboard.score_update()
@@ -27,8 +39,9 @@ while game_is_on:
     time.sleep(0.1)
     snake.move()
     if snake.does_hit_walls():
-        game_is_on = False
-        scoreboard.game_over()
+        scoreboard.reset_score_board()
+        time.sleep(0.5)
+        snake.reset_snake()
     # detect the collision with the food
     if snake.head.distance(food) < 15:
         food.refresh()
@@ -36,9 +49,10 @@ while game_is_on:
         snake.extend()
     # detect collision with self
     for segment in snake.segments[1:]:
-        if snake.head.distance(segment) < 10:
-            scoreboard.game_over()
-            game_is_on = False
+        if segment.distance(snake.head) < 10:
+            scoreboard.reset_score_board()
+            time.sleep(0.5)
+            snake.reset_snake()
 
 screen.exitonclick()
-print(f"Your final score is: {scoreboard.print_score()}")
+print(f"High score is: {scoreboard.print_high_score()}")
