@@ -42,7 +42,7 @@ text.pack()
 
 # Spinbox
 def spinbox_used():
-	#gets the current value in spinbox.
+	# gets the current value in spinbox.
 	print(spinbox.get())
 
 
@@ -62,7 +62,7 @@ scale.pack()
 
 # Checkbutton
 def checkbutton_used():
-	#Prints 1 if On button checked, otherwise 0.
+	# Prints 1 if On button checked, otherwise 0.
 	print(checked_state.get())
 
 
