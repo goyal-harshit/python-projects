@@ -13,7 +13,7 @@ LONG_BREAK_MIN = 20
 timer = None
 session_state = "work"
 work_sessions = 0
-
+checkmarks = ""
 
 # ---------------------------- TIMER RESET ------------------------------- #
 def reset_timer():
@@ -48,7 +48,7 @@ def start_timer():
 
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- #
 def countdown(count):
-    global timer
+    global timer, work_sessions, checkmarks
     minutes = count // 60
     seconds = count % 60
     if seconds < 10:
@@ -58,6 +58,9 @@ def countdown(count):
         timer = window.after(1000, countdown, count - 1)
     else:
         start_timer()
+        if work_sessions % 2 == 0:
+            checkmarks += "✔"
+            label_check.config(text=checkmarks)
 
 
 def update_timer_text():
@@ -89,7 +92,7 @@ start.grid(row=3, column=1)
 reset = Button(text="Reset", highlightthickness=0, command=reset_timer)
 reset.grid(row=3, column=3)
 
-label_check = Label(text="✔", bg=YELLOW, fg=GREEN)
+label_check = Label(bg=YELLOW, fg=GREEN, font=(FONT_NAME, 20))
 label_check.grid(row=4, column=2)
 
 update_timer_text()
