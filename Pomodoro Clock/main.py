@@ -48,7 +48,7 @@ def start_timer():
         countdown(WORK_MIN * 60)
 
 
-    # ---------------------------- COUNTDOWN MECHANISM ------------------------------- #
+# ---------------------------- COUNTDOWN MECHANISM ------------------------------- #
 def countdown(count):
     global timer, work_sessions, checkmarks
     minutes = count // 60
