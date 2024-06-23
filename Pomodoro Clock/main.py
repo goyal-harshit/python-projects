@@ -17,7 +17,7 @@ checkmarks = ""
 
 # ---------------------------- TIMER RESET ------------------------------- #
 def reset_timer():
-    global timer, session_state, work_sessions
+    global timer, session_state, work_sessions, checkmarks
     if timer is not None:
         window.after_cancel(timer)
         timer = None
@@ -25,6 +25,7 @@ def reset_timer():
     canvas.itemconfig(timer_text, text="00:00")
     session_state = "work"
     work_sessions = 0
+    checkmarks = ""
     update_timer_text()
 
 
