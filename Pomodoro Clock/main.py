@@ -10,7 +10,6 @@ WORK_MIN = 25
 SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 20
 
-# Global variable to store the reference to the `after` method call
 timer = None
 session_state = "work"
 work_sessions = 0
