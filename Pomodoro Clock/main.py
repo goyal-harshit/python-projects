@@ -34,15 +34,15 @@ def start_timer():
     work_sessions += 1
     if work_sessions % 8 == 0:
         session_state = "long_break"
-        label["text"] = "Long_break"
+        label.config(text="Long_break", fg=RED)
         countdown(LONG_BREAK_MIN * 60)
     elif work_sessions % 2 == 0:
         session_state = "short_break"
-        label["text"] = "Short_break"
+        label.config(text="Short_break", fg=PINK)
         countdown(SHORT_BREAK_MIN * 60)
     else:
         session_state = "Work_Time"
-        label["text"] = "Work_time"
+        label.config(text="Work_time", fg=GREEN)
         countdown(WORK_MIN * 60)
 
 
