@@ -8,11 +8,15 @@ def generate_password():
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 def save_password():
-	with open("data.txt", "a") as file:
-		website = website_entry.get()
-		mail = mail_entry.get()
-		password = pass_entry.get()
-		file.write(f"{website} | {mail} | {password}")
+
+	website = website_entry.get()
+	mail = mail_entry.get()
+	password = pass_entry.get()
+
+	with open("passwords.txt", "a") as file:
+		file.write(f"{website} | {mail} | {password}\n")
+		website_entry.delete(0, END)
+		pass_entry.delete(0, END)
 
 
 # ---------------------------- UI SETUP ------------------------------- #
