@@ -11,7 +11,7 @@ def generate_password():
 			   'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
 			   'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 	numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-	symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
+	symbols = ['@', '!', '#', '$', '%', '&', '(', ')', '*', '+', '_', '.']
 
 	nr_letters = random.randint(6, 8)
 	nr_symbols = random.randint(2, 4)
@@ -40,8 +40,7 @@ def save_password():
 	if len(website) == 0 or len(password) == 0 or len(mail) == 0:
 		messagebox.showinfo(title="Missing Info", message="Please make sure you haven't left any fields empty")
 	else:
-		is_ok = messagebox.askyesno(title=website,
-									message=f"These are the details entered: \nEmail: {mail} \nPassword: {password}\nIs the information correct?")
+		is_ok = messagebox.askyesno(title=website, message=f"These are the details entered: \nEmail: {mail} \nPassword: {password}\nIs the information correct?")
 		if is_ok:
 			with open("passwords.txt", "a") as file:
 				file.write(f"{website} | {mail} | {password}\n")
