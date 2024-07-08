@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
 import pyperclip
+import json
 from random import *
 
 
@@ -13,7 +14,7 @@ def generate_password():
 	numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 	symbols = ['@', '!', '#', '$', '%', '&', '(', ')', '*', '+', '_', '.']
 
-	password_list = [choice(letters) for _ in range(randint(6, 8))]
+	password_list = [choice(letters) for _ in range(randint(8, 10))]
 	password_list += [choice(symbols) for _ in range(randint(2, 4))]
 	password_list += [choice(numbers) for _ in range(randint(2, 4))]
 
@@ -32,14 +33,27 @@ def save_password():
 	website = website_entry.get()
 	mail = mail_entry.get()
 	password = pass_entry.get()
+	new_pass = {
+		website: {
+			"email": mail,
+			"password": password,
+		}
+	}
 
 	if len(website) == 0 or len(password) == 0 or len(mail) == 0:
 		messagebox.showinfo(title="Missing Info", message="Please make sure you haven't left any fields empty")
 	else:
 		is_ok = messagebox.askyesno(title=website, message=f"These are the details entered: \nEmail: {mail} \nPassword: {password}\nIs the information correct?")
 		if is_ok:
-			with open("passwords.txt", "a") as file:
-				file.write(f"{website} | {mail} | {password}\n")
+			with open("passwords.json", "r") as file:
+				# Read old data
+				data = json.load(file)
+				# Update old data
+				data.update(new_pass)
+
+			with open("passwords.json", "w") as file:
+				# Save updated data
+				json.dump(data, file, indent=4)
 				website_entry.delete(0, END)
 				pass_entry.delete(0, END)
 				website_entry.focus()
